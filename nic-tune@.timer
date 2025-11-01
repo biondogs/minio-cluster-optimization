@@ -1,0 +1,13 @@
+[Unit]
+Description=Re-apply NIC tuning for %i
+
+[Timer]
+# First run after boot, then repeat (adjust to taste)
+OnBootSec=1min
+OnUnitActiveSec=10min
+AccuracySec=30s
+Unit=nic-tune@%i.service
+Persistent=true
+
+[Install]
+WantedBy=timers.target

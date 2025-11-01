@@ -1,0 +1,17 @@
+[Unit]
+Description=NIC tuning for %I
+Documentation=man:ethtool(8) man:tc(8)
+ConditionPathExists=/sys/class/net/%I
+Wants=network-online.target
+After=network-online.target irqbalance.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/nic-tune.sh %I
+# If the script updated /etc/sysconfig/irqbalance, give irqbalance a gentle nudge
+ExecStartPost=/usr/bin/bash -lc '[ -f /etc/sysconfig/irqbalance ] && /usr/bin/systemctl try-reload-or-restart irqbalance.service || true'
+# Make runs safe/idempotent
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

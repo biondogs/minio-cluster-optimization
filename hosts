@@ -1,0 +1,16 @@
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+
+# MinIO Cluster Nodes
+10.99.137.21    minion01 minion01.arch.jhu.edu
+10.99.137.22    minion02 minion02.arch.jhu.edu
+10.99.137.23    minion03 minion03.arch.jhu.edu
+10.99.137.24    minion04 minion04.arch.jhu.edu
+10.99.137.25    minion05 minion05.arch.jhu.edu
+10.99.137.26    minion06 minion06.arch.jhu.edu
+10.99.137.27    minion07 minion07.arch.jhu.edu
+10.99.137.28    minion08 minion08.arch.jhu.edu
+10.99.137.29    minion09 minion09.arch.jhu.edu
+10.99.137.30    minion10 minion10.arch.jhu.edu
+10.99.137.31    minion11 minion11.arch.jhu.edu
+10.99.137.32    minion12 minion12.arch.jhu.edu

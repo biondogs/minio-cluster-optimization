@@ -1,0 +1,43 @@
+[Unit]
+Description=MinIO Object Storage Server
+Documentation=https://docs.min.io
+Wants=network-online.target
+After=network-online.target
+AssertFileIsExecutable=/usr/local/bin/minio
+
+[Service]
+Type=notify
+WorkingDirectory=/usr/local
+
+# User and group for MinIO
+User=minio
+Group=minio
+ProtectProc=invisible
+
+# Load environment variables
+EnvironmentFile=-/etc/default/minio
+
+# Start MinIO server with configured options and volumes
+ExecStart=/usr/local/bin/minio server $MINIO_OPTS $MINIO_VOLUMES
+
+# Restart policy
+Restart=always
+RestartSec=10
+
+# Resource limits for high-performance object storage
+LimitNOFILE=1048576
+LimitNPROC=65536
+TasksMax=infinity
+MemoryAccounting=no
+TimeoutSec=infinity
+OOMScoreAdjust=-1000
+
+# Security settings
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+ReadWritePaths=/mnt/
+
+[Install]
+WantedBy=multi-user.target
