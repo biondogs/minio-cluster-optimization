@@ -112,6 +112,7 @@ make verify
 | [`hosts`](./architecture/overview.md#hosts-cluster-nodes) | Hostname-to-IP mapping for cluster nodes |
 | [`test-optimization.sh`](./architecture/overview.md#test-optimizationsh-verification) | Post-installation verification script |
 | `Makefile` | Convenience targets (`install`, `verify`, `setup`, `clean`) |
+| `.github/workflows/openwiki-update.yml` | GitHub Actions workflow that schedules OpenWiki doc updates and opens a PR |
 
 ## Key Optimization Areas
 
@@ -151,6 +152,10 @@ make verify
 - Dry-run mode available for `install`, `disk`, and `nic` commands
 - `minio-host-prep.sh install --root DIR` supports staging files to a chroot or image directory
 - Comprehensive error handling with non-aborting warnings for optional features
+
+## Documentation Maintenance
+
+This repo's OpenWiki documentation is refreshed automatically by the GitHub Actions workflow [`.github/workflows/openwiki-update.yml`](../.github/workflows/openwiki-update.yml): it runs `openwiki code --update --print` on a daily cron schedule (and on manual dispatch) and opens a pull request with the updated `openwiki/` pages plus the `AGENTS.md`/`CLAUDE.md` instruction markers. The generated pages under `openwiki/` and the marked blocks in `AGENTS.md`/`CLAUDE.md` should not be hand-edited; change the source files and let the workflow regenerate the docs.
 
 ## Backlog
 
